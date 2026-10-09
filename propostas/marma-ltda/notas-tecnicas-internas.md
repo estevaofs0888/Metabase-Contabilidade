@@ -46,7 +46,7 @@ CNPJ 67.699.385/0001-06 · Confecção · Santa Cruz do Capibaribe/PE · ~35 tra
 ## 5. Base dos honorários sugeridos (ajustar livremente)
 
 - **Proposta 001 (planejamento):** R$ 4.800 na proposta (R$ 2.400 Metabase + R$ 2.400 Arnesen), com margem para fechar em **R$ 4.000** (R$ 2.000 cada). A proposta já oferece os R$ 4.000 como condição especial se fecharem também o mensal, o que serve de argumento para negociar.
-- **Proposta 002 (mensal):** 1 salário mínimo (R$ 1.621 em 2026), metade contábil (R$ 810,50) e metade jurídico (R$ 810,50), cobrindo até 35 empregados registrados. Reajuste automático pelo salário mínimo. Acima de 35, revisão do valor.
+- **Proposta 002 (mensal):** 1 salário mínimo (R$ 1.621 em 2026), metade contábil (R$ 810,50) e metade jurídico (R$ 810,50), cobrindo a fase inicial de até 10 empregados registrados. Reajuste anual automático pelo salário mínimo. Acima de 10 empregados, ou com mais volume de serviço, renegociar.
   - Comparar com a tabela referencial do Sescon/CRC-PE e com a tabela da OAB-PE para "assessoria jurídica mensal a empresas". Se a tabela da OAB-PE tiver valor mínimo maior, ajustar a parte do Arnesen.
 - **Contratos e notas fiscais separados** para contador e advogado. O Estatuto da OAB veda sociedade e partilha de honorários com quem não é advogado, então a proposta é conjunta só na apresentação.
 
