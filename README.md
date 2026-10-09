@@ -7,6 +7,7 @@ Documentos de clientes e propostas comerciais.
 - `propostas/marma-ltda/` – MARMA LTDA (confecção, Santa Cruz do Capibaribe/PE)
   - `01-proposta-planejamento-trabalhista.html` / `.pdf` – planejamento da regularização trabalhista
   - `02-proposta-acompanhamento-mensal.html` / `.pdf` – contabilidade, DP e jurídico mensal
+  - `01-propuesta-planificacion-laboral-es.*` / `02-propuesta-acompanamiento-mensual-es.*` – traduções de cortesia em espanhol (prevalece o português)
   - `notas-tecnicas-internas.md` – fundamentos e premissas (uso interno, não enviar)
 
 Logomarca: salvar em `assets/logo-metabase.png` e regerar os PDFs:
