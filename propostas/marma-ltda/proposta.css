@@ -1,0 +1,35 @@
+:root{--ink:#1d2433;--muted:#5b6475;--brand:#173a5e;--accent:#2f7d6d;--line:#d9dee7;--soft:#f3f6fa;}
+*{box-sizing:border-box}
+body{margin:0;background:#e9edf2;color:var(--ink);font:10.5pt/1.5 "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}
+.page{background:#fff;max-width:210mm;margin:16px auto;padding:18mm 18mm 16mm;box-shadow:0 1px 6px rgba(0,0,0,.12)}
+header.top{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--brand);padding-bottom:10px;margin-bottom:18px;gap:16px}
+.logo img{max-height:60px;max-width:220px;display:block}
+.logo .fallback{font-weight:800;letter-spacing:.06em;color:var(--brand);font-size:15pt;line-height:1.1}
+.logo .fallback small{display:block;font-weight:600;letter-spacing:.2em;font-size:8pt;color:var(--accent)}
+.doc-id{text-align:right;font-size:9pt;color:var(--muted)}
+.doc-id strong{color:var(--ink);font-size:10pt}
+h1{font-size:18pt;color:var(--brand);margin:0 0 4px}
+.subtitle{color:var(--muted);margin:0 0 16px}
+h2{font-size:12.5pt;color:var(--brand);border-bottom:1px solid var(--line);padding-bottom:3px;margin:22px 0 8px;break-after:avoid}
+h3{font-size:11pt;margin:14px 0 4px;color:var(--ink);break-after:avoid}
+p{margin:0 0 8px}
+ul,ol{margin:0 0 8px;padding-left:20px}
+li{margin:2px 0}
+table{width:100%;border-collapse:collapse;margin:6px 0 10px;font-size:9.8pt;break-inside:avoid}
+th,td{border:1px solid var(--line);padding:5px 7px;text-align:left;vertical-align:top}
+th{background:var(--soft);font-weight:600}
+td.num,th.num{text-align:right;white-space:nowrap}
+tr.total td{font-weight:700;background:var(--soft)}
+.box{background:var(--soft);border-left:4px solid var(--accent);padding:9px 12px;margin:10px 0;break-inside:avoid}
+.box.warn{border-left-color:#b7791f;background:#fdf7ec}
+.parties{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 6px}
+.parties div{border:1px solid var(--line);padding:8px 10px;border-radius:4px;font-size:9.5pt}
+.parties strong{display:block;color:var(--brand)}
+.price{font-size:15pt;font-weight:800;color:var(--brand)}
+.sign{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-top:40px;text-align:center;font-size:9pt;break-inside:avoid}
+.sign div{border-top:1px solid var(--ink);padding-top:4px}
+footer{margin-top:22px;border-top:1px solid var(--line);padding-top:6px;font-size:8.5pt;color:var(--muted);text-align:center}
+.small{font-size:9pt;color:var(--muted)}
+@media (max-width:640px){.page{padding:16px;margin:0}.parties,.sign{grid-template-columns:1fr}header.top{flex-direction:column;align-items:flex-start}.doc-id{text-align:left}}
+@page{size:A4;margin:14mm 14mm 14mm}
+@media print{body{background:#fff}.page{box-shadow:none;margin:0;padding:0;max-width:none}}
