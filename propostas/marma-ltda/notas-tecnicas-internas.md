@@ -38,16 +38,15 @@ CNPJ 67.699.385/0001-06 · Confecção · Santa Cruz do Capibaribe/PE · ~35 tra
 ## 4. Premissas da estimativa preliminar (proposta 001)
 
 - Salário-base de R$ 1.621,00 (salário mínimo 2026). **Confirmar o piso na CCT** do vestuário em PE e o sindicato de Santa Cruz do Capibaribe.
-- Simples Nacional, Anexo II (indústria): a CPP está no DAS, então não há 20% de INSS patronal, RAT nem terceiros. **Confirmar a opção pelo Simples** e o faturamento previsto (limite de R$ 4,8 milhões; sublimite de ICMS/ISS de R$ 3,6 milhões).
+- Simples Nacional, Anexo II (indústria) – **confirmado pelo cliente; a empresa permanece no Simples**. A CPP está no DAS, então não há 20% de INSS patronal, RAT nem terceiros. Acompanhar o faturamento (limite de R$ 4,8 milhões; sublimite de ICMS/ISS de R$ 3,6 milhões).
 - Custo por empregado: salário + FGTS 8% + 13º + férias + 1/3 + FGTS sobre esses itens + provisão da multa de 40% ≈ **R$ 2.153,05 por mês (fator 1,328)**.
 - Horas extras: 11 horas por semana (10h de segunda a sexta + 5h no sábado) ≈ 47,1 horas por mês; reflexo no DSR de cerca de 20%.
 - Não incluído: vale-transporte, SST (exames, PGR/PCMSO), ponto e benefícios da CCT (cesta, seguro de vida etc.). Somar na Etapa 2.
 
 ## 5. Base dos honorários sugeridos (ajustar livremente)
 
-- **Proposta 001 (planejamento):** R$ 9.000, sendo R$ 4.500 da Metabase e R$ 4.500 do Arnesen. Desconto de 20% se fechar o mensal. São cerca de 30 dias de trabalho, com visita, levantamento de 35 pessoas, simulações, contratos e regulamento.
-- **Proposta 002 (mensal):** contábil/fiscal base de R$ 1.100 + DP de R$ 35 por empregado (mínimo de R$ 350) + jurídico de R$ 1.500. Com 35 empregados, o total é R$ 3.825 por mês.
-  - O DP por empregado acompanha os registros por fases.
+- **Proposta 001 (planejamento):** R$ 4.800 na proposta (R$ 2.400 Metabase + R$ 2.400 Arnesen), com margem para fechar em **R$ 4.000** (R$ 2.000 cada). A proposta já oferece os R$ 4.000 como condição especial se fecharem também o mensal, o que serve de argumento para negociar.
+- **Proposta 002 (mensal):** 1 salário mínimo (R$ 1.621 em 2026), metade contábil (R$ 810,50) e metade jurídico (R$ 810,50), cobrindo até 35 empregados registrados. Reajuste automático pelo salário mínimo. Acima de 35, revisão do valor.
   - Comparar com a tabela referencial do Sescon/CRC-PE e com a tabela da OAB-PE para "assessoria jurídica mensal a empresas". Se a tabela da OAB-PE tiver valor mínimo maior, ajustar a parte do Arnesen.
 - **Contratos e notas fiscais separados** para contador e advogado. O Estatuto da OAB veda sociedade e partilha de honorários com quem não é advogado, então a proposta é conjunta só na apresentação.
 
@@ -56,5 +55,6 @@ CNPJ 67.699.385/0001-06 · Confecção · Santa Cruz do Capibaribe/PE · ~35 tra
 - [ ] Logomarca da Metabase → salvar em `assets/logo-metabase.png`; as propostas carregam o arquivo automaticamente.
 - [ ] Dados do Arnesen para o rodapé e as assinaturas (OAB/PE nº).
 - [ ] Endereço, CRC e contatos da Metabase no cabeçalho.
-- [ ] Confirmar CNAE, regime tributário e data de abertura do CNPJ.
+- [x] Regime tributário: Simples Nacional (confirmado).
+- [ ] Confirmar CNAE e data de abertura do CNPJ.
 - [ ] Obter a CCT vigente (piso, adicionais, regras de produção e de banco de horas).
