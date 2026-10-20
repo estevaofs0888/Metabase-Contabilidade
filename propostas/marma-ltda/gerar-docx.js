@@ -217,7 +217,7 @@ function signatures() {
   return table([w, gap, w, gap, w], [new TableRow({ cantSplit: true, children: [
     s("MARMA LTDA", "Contratante"), g(),
     s("Estêvão Fernandes", "Contador · CRC/PE 027627/O6 · Metabase Contabilidade"), g(),
-    s("Arnessen Cintra", "Advogado · OAB/PE 70.236 · Arnessen Cintra Advocacia"),
+    s("Arnessen Cintra", "Advogado · OAB/PE 70.236 · CRC/PE 028.529 · Arnessen Cintra Advocacia"),
   ] })]);
 }
 
