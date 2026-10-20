@@ -72,13 +72,15 @@ function cardContent(c) {
   return [
     new Paragraph({ children: [new TextRun({ text: c.step.toUpperCase(), bold: true, size: 15, color: GREEN_DARK, font: FONT, characterSpacing: 30 })], spacing: { after: 40 } }),
     new Paragraph({ children: title, spacing: { after: 100 } }),
-    ...c.items.map((t) => bullet(t)),
+    ...c.items.map((t) => t.startsWith("# ") ? P(`**${t.slice(2)}**`, { size: 19, before: 80, after: 60 }) : bullet(t)),
   ];
 }
 function cards(list) {
   const gap = 200, half = (W - gap) / 2, rows = [];
   for (let i = 0; i < list.length; i += 2) {
-    const a = list[i], b = list[i + 1];
+    const a = list[i];
+    let b = list[i + 1];
+    if (a.full || (b && b.full)) { b = undefined; i -= 1; }
     if (!b) {
       rows.push(new TableRow({ cantSplit: false, children: [cell(cardContent(a), { w: W, span: 3, borders: allBorders() })] }));
     } else {
@@ -214,8 +216,8 @@ function signatures() {
   const g = () => cell([new Paragraph("")], { w: gap });
   return table([w, gap, w, gap, w], [new TableRow({ cantSplit: true, children: [
     s("MARMA LTDA", "Contratante"), g(),
-    s("Estêvão Fernandes", "Contador · Metabase Contabilidade"), g(),
-    s("Arnessen Cintra", "Advogado · OAB/PE 70.236"),
+    s("Estêvão Fernandes", "Contador · CRC/PE 028.529 · Metabase Contabilidade"), g(),
+    s("Arnessen Cintra", "Advogado · OAB/PE 70.236 · Arnessen Cintra Advocacia"),
   ] })]);
 }
 
@@ -236,7 +238,7 @@ function doc(children) {
       properties: { page: { size: { width: 11906, height: 16838 }, margin: { top: 1000, bottom: 1000, left: 1134, right: 1134, footer: 500 } } },
       footers: { default: new Footer({ children: [new Paragraph({ alignment: AlignmentType.CENTER, border: { top: line(LINE, 6) }, spacing: { before: 100 }, children: [
         new TextRun({ text: "Metabase Contabilidade", bold: true, color: GREEN_DARK, size: 15, font: FONT }),
-        new TextRun({ text: " · desde 2015 · 11 anos     |     ", color: MUTED, size: 15, font: FONT }),
+        new TextRun({ text: " · desde 2015     |     ", color: MUTED, size: 15, font: FONT }),
         new TextRun({ text: "Arnessen Cintra Advocacia", bold: true, color: GRAPHITE, size: 15, font: FONT }),
         new TextRun({ text: " · OAB/PE 70.236", color: MUTED, size: 15, font: FONT }),
       ] })] }) },
@@ -247,13 +249,15 @@ function doc(children) {
 
 const cabecalho = (numero, titulo, sub, validade2) => [
   logos(numero), spacer(200), hero(titulo, sub),
-  meta([["Cliente", "MARMA LTDA", "CNPJ 67.699.385/0001-06"], ["Data", "09/10/2026", "Santa Cruz do Capibaribe/PE"], ["Validade", "15 dias", validade2]]),
+  meta([["Cliente", "MARMA LTDA", "CNPJ 67.699.385/0001-06"], ["Data", "20/10/2026", "Santa Cruz do Capibaribe/PE"], ["Validade", "15 dias", validade2]]),
 ];
+const notaIdioma = (n) => [spacer(160), box(`**Versão válida.** Esta Proposta nº ${n} é a versão oficial. A versão em espanhol é apresentada apenas para facilitar o entendimento; qualquer dúvida será esclarecida pela versão em português.`)];
 const juridicoNota = "Cada profissional emite seu próprio contrato e documento fiscal pela sua parte. A divisão segue as regras do CFC, para a contabilidade, e do Estatuto da Advocacia e Código de Ética da OAB, para a advocacia.";
 
 // ---------- Proposta 001 ----------
 const p1 = doc([
   ...cabecalho("001/2026", "Planejamento Trabalhista", "Diagnóstico, estimativa de custos e plano de regularização do quadro de empregados", "Prazo de execução: 30 dias"),
+  ...notaIdioma("001/2026"),
   heading(1, "Contexto"),
   P("A MARMA LTDA é uma indústria de confecção com CNPJ recém-aberto e ainda sem movimentação. Hoje cerca de **35 pessoas** trabalham nas instalações da empresa: parte recebe **por hora** e parte **por produção**. Quem trabalha por produção define o quanto quer produzir e, para cumprir as entregas e ganhar mais, costuma ter uma rotina intensa. A jornada de cada função será analisada caso a caso.", { size: 21 }),
   P("A empresa quer começar a operar formalmente, registrar os trabalhadores e reduzir o risco de **fiscalização do trabalho** e de **reclamações trabalhistas**, com um custo que caiba na operação. O foco principal são os trabalhadores **por produção**."),
@@ -320,8 +324,9 @@ const p1 = doc([
 // ---------- Proposta 002 ----------
 const p2 = doc([
   ...cabecalho("002/2026", "Acompanhamento Mensal", "Contabilidade, Departamento Pessoal e Assessoria Jurídica Trabalhista", "Vigência: prazo indeterminado"),
+  ...notaIdioma("002/2026"),
   heading(1, "Objetivo"),
-  P("Depois do planejamento, a MARMA precisa de acompanhamento contínuo. A empresa vai crescer o quadro de empregados por etapas e deve manter a folha, os impostos e as rotinas trabalhistas em dia, com orientação jurídica preventiva para não criar passivo. A **Metabase Contabilidade** e o advogado **Arnessen Cintra** fazem esse acompanhamento de forma integrada.", { size: 21 }),
+  P("Depois do planejamento, a MARMA precisa de acompanhamento contínuo. A empresa vai crescer o quadro de empregados por etapas e deve manter a folha, os impostos e as rotinas trabalhistas em dia, com orientação jurídica preventiva para não criar passivo. A **Metabase Contabilidade** e a **Arnessen Cintra Advocacia** fazem esse acompanhamento de forma integrada.", { size: 21 }),
   heading(2, "Serviços incluídos"),
   cards([
     { step: "Contabilidade e Fiscal", title: "Empresa em dia com o fisco", tags: ["Metabase"], items: [
@@ -337,31 +342,45 @@ const p2 = doc([
       "Conferência do **espelho de ponto** e do banco de horas, com alertas sobre jornada e horas extras.",
       "Controle de vencimentos de férias, experiências e exames periódicos.",
       "Obrigações anuais e informe de rendimentos dos empregados."] },
-    { step: "Assessoria Jurídica Trabalhista", title: "Prevenção antes do problema", tags: ["Arnessen"], items: [
+    { full: true, step: "Assessoria Jurídica Trabalhista Preventiva", title: "Prevenção antes do problema", tags: ["Arnessen Cintra Advocacia"], items: [
       "Consultoria preventiva ilimitada por WhatsApp, e-mail ou reunião: contratações, jornada, produção, advertências, suspensões e demissões.",
       "Revisão e atualização dos contratos, acordos de compensação/banco de horas, regulamento interno e termos individuais.",
+      "Regulamento Interno da Empresa: criação do código de conduta interno, com regras de vestimenta, uso de EPIs, pontualidade e penalidades (advertências e suspensões).",
+      "1 reunião trimestral de revisão de riscos, junto com a contabilidade."] },
+    { full: true, step: "Assessoria Jurídica Trabalhista Ad Judicia et Extra", title: "Defesa da empresa dentro e fora do Judiciário", tags: ["Arnessen Cintra Advocacia"], items: [
+      "# a) Advocacia Trabalhista Extrajudicial",
       "Atendimento a fiscalizações do Ministério do Trabalho e defesa administrativa de autos de infração.",
       "Relacionamento com o sindicato e análise anual da nova Convenção Coletiva.",
-      "Orientação nas rescisões de maior risco e acordos extrajudiciais (art. 855-B da CLT).",
-      "1 reunião trimestral de revisão de riscos, junto com a contabilidade."] },
+      "Homologação de acordo extrajudicial.",
+      "Mediação no Ministério Público do Trabalho: atuação em inquéritos civis ou mediações perante o MPT para assinatura de TACs.",
+      "# b) Advocacia Trabalhista Judicial",
+      "Elaboração de defesas estratégicas (contestações).",
+      "Propositura de reconvenção: quando o ex-funcionário causou prejuízos materiais ou financeiros à empresa, cobrança desses valores no próprio processo.",
+      "Gestão de provas e instrução processual; preparação de testemunhas e prepostos.",
+      "Acompanhamento em audiências iniciais, de conciliação e de instrução (presenciais ou virtuais).",
+      "Acompanhamento de perícias judiciais; impugnação e auditoria de cálculos judiciais.",
+      "Relatórios de contingência trabalhista: status de cada processo e risco de perda (provável, possível ou remota), para apoiar o provisionamento financeiro.",
+      "Auditoria de acordos em andamento: controle e emissão de guias dos acordos parcelados, evitando multas por atraso."] },
   ]),
   heading(3, "Investimento mensal"),
   prices(
-    { dark: true, label: "Fase inicial · até 10 empregados", big: "1 salário mínimo", bigSize: 40, sub: "R$ 1.621,00 por mês em 2026, com contabilidade, fiscal, DP e jurídico incluídos.", split: ["Metabase: R$ 810,50", "Arnessen: R$ 810,50"] },
-    { label: "Crescimento do quadro", big: "Reajuste negociado", bigSize: 30, sub: "O valor de 1 salário mínimo vale para até 10 empregados registrados. Se o quadro passar disso, o honorário terá reajuste negociado em comum acordo, proporcional ao volume de serviço." }),
+    { dark: true, label: "Fase inicial · até 10 empregados", big: "2,5 salários mínimos", bigSize: 34, sub: "R$ 4.052,50 por mês em 2026, com contabilidade, fiscal, DP e jurídico (preventivo, extrajudicial e judicial) incluídos.", split: ["Metabase: R$ 1.215,75", "Arnessen Cintra Advocacia: R$ 2.836,75"] },
+    { label: "Crescimento do quadro", big: "Reajuste negociado", bigSize: 30, sub: "O valor de 2,5 salários mínimos vale para até 10 empregados registrados. Se o quadro passar disso, o honorário terá reajuste negociado em comum acordo, proporcional ao volume de serviço." }),
   spacer(160),
   dataTable([4638, 3000, 2000], ["Serviço", "Responsável", "Valor mensal (R$)"], [
-    ["Contabilidade, Fiscal e Departamento Pessoal (½ salário mínimo)", "Metabase Contabilidade", "810,50"],
-    ["Assessoria Jurídica Trabalhista preventiva (½ salário mínimo)", "Arnessen Cintra – OAB/PE 70.236", "810,50"]],
-    ["Total mensal (1 salário mínimo)", "", "1.621,00"], [2]),
+    ["Contabilidade, Fiscal e Departamento Pessoal (¾ de salário mínimo)", "Metabase Contabilidade", "1.215,75"],
+    ["Assessoria Jurídica Trabalhista Preventiva (¾ de salário mínimo)", "Arnessen Cintra Advocacia – OAB/PE 70.236", "1.215,75"],
+    ["Assessoria Jurídica Trabalhista Ad Judicia et Extra (1 salário mínimo)", "Arnessen Cintra Advocacia – OAB/PE 70.236", "1.621,00"]],
+    ["Total mensal (2,5 salários mínimos)", "", "4.052,50"], [2]),
   P("**Condições**", { size: 21, before: 200 }),
   bullet("**Vencimento:** dia 05 do mês subsequente ao da prestação do serviço."),
-  bullet("**13ª parcela:** em dezembro, parcela adicional da parte contábil (R$ 810,50), para o 13º salário e a DEFIS."),
+  bullet("**13ª parcela:** em dezembro, parcela adicional da parte contábil (R$ 1.215,75), para o 13º salário e a DEFIS."),
   bullet("**Taxa de implantação:** R$ 40,00 por admissão no lançamento inicial. Isenta se o planejamento (Proposta nº 001/2026) também for contratado."),
+  bullet("**Reuniões:** reuniões online sem limite. Uma reunião presencial por mês, quando solicitada; a partir da segunda reunião presencial no mês, é cobrado o custo de deslocamento."),
   bullet("**Reajuste:** anual e automático, acompanhando o salário mínimo nacional, independente de eventual renegociação por volume."),
   bullet("**Vigência:** prazo indeterminado, com 30 dias de aviso prévio para encerramento por qualquer das partes."),
   spacer(80),
-  box("**Não incluídos (orçados à parte):** balanço patrimonial, balancetes e DRE, elaborados sob demanda com custo adicional; atuação em **reclamações trabalhistas e processos judiciais**, cobrados por ação conforme a tabela da OAB-PE; recuperação de períodos anteriores à contratação; regularização de pendências fiscais antigas; e custos de terceiros, como médico do trabalho, PGR/PCMSO, sistema de ponto, certificado digital, taxas e emolumentos.", true),
+  box("**Não incluídos (orçados à parte):** balanço patrimonial, balancetes e DRE, elaborados sob demanda com custo adicional; recuperação de períodos anteriores à contratação; regularização de pendências fiscais antigas; e custos de terceiros, como médico do trabalho, PGR/PCMSO, sistema de ponto, certificado digital, taxas e emolumentos.", true),
   spacer(60),
   small(juridicoNota + " A proposta é apresentada em conjunto para facilitar a gestão da contratante."),
   closing(4, "Responsabilidades da contratante", [
